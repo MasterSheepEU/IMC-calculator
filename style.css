@@ -1,0 +1,97 @@
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  font-family: Lato, Helvetica, sans-serif;
+  background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);
+  padding: clamp(20px, 5vw, 50px) 10px 10px;
+}
+
+h2 {
+  font-size: 2rem;
+  padding: 20px 0;
+  width: 50%;
+  border-radius: 0 0 20px 20px;
+  border: solid 1px black;
+  margin: auto;
+  margin-bottom: 20px;
+}
+
+.app-container {
+  border: solid 3px black;
+  background: white;
+  border-radius: 10px;
+  width: 45%;
+  margin: auto;
+  text-align: center;
+}
+
+.cm-container input,
+.kg-container input {
+  margin-top: 10px;
+  width: 65%;
+  height: 50px;
+  background: rgba(128, 128, 128, 0.259);
+  box-shadow: 2px -2px 4px 0px #0000005e;
+  border-radius: 10px;
+  padding-left: 10px;
+}
+
+.kg-container label,
+.cm-container label {
+  font-size: 1.2rem;
+}
+
+.value-container {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+#calcul {
+  width: 30%;
+  height: 50px;
+  font-size: 1.3rem;
+  border-radius: 10px;
+  background: #fabe33;
+}
+
+#result {
+  font-size: 1.2rem;
+  margin: 20px 0;
+}
+
+.IMC p {
+  font-size: 2rem;
+}
+
+/* Couleur des rendu de L'IMC */
+
+.midnightblue {
+  color: midnightblue;
+}
+
+.green {
+  color: green;
+}
+
+.lightcoral {
+  color: lightcoral;
+}
+
+.orange {
+  color: orange;
+}
+
+.crimson {
+  color: crimson;
+}
+
+.purple {
+  color: purple;
+}
