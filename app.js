@@ -20,31 +20,33 @@ const calculIMC = () => {
   let cmValue = document.getElementById('cm-number').value
   let kgValue = document.getElementById('kg-number').value
 
-  // Message d'erreur si les chiffres rentré dans l'input ne sont pas correct
+  // Calcul de l'IMC
 
-  if (cmValue < 0 || kgValue < 0 || cmValue === "" || kgValue === "") {
+  cmValue = cmValue / 100
+  cmValue = Math.pow(cmValue, 2)
 
-    result.innerHTML = `
-    <div class=error-message>
-    <p>Whoops</p>
-    <p>Veuillez rentrer des valeurs valide</p>
-    </div>
-    `
-  } else {
+  let IMC = kgValue / cmValue
+  IMC = Math.ceil(IMC)
 
-    // Calcul de l'IMC
+  // Return du resultat à la fonction 
 
-    cmValue = cmValue / 100
-    cmValue = Math.pow(cmValue, 2)
-
-    let IMC = kgValue / cmValue
-    IMC = Math.ceil(IMC)
-
-    // Return du resultat à la fonction 
-
-    return IMC;
-  }
+  return IMC;
 }
+
+
+// Fonction affichage Erreur 
+
+const displayError = () => {
+
+  result.innerHTML = `
+  <div class=error-message>
+  <p>Whoops</p>
+  <p>Veuillez rentrer des valeurs valides</p>
+  </div>
+  `
+
+}
+
 
 // Fonction d'affichage de L'IMC
 
@@ -84,11 +86,21 @@ const displayResult = (IMC) => {
 //Appel des fonctions lors de l'envoi du form
 
 globalForm.addEventListener('submit', (e) => {
+
   e.preventDefault()
+
+  let cmValue = document.getElementById('cm-number').value
+  let kgValue = document.getElementById('kg-number').value
+
+  if (cmValue <= 0 || kgValue <= 0 || !cmValue || !kgValue) {
+    displayError()
+    return;
+  }
 
   calculIMC()
 
   displayResult(calculIMC())
 
 })
+
 
