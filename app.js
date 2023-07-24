@@ -4,7 +4,7 @@ const BMIData = [
   { name: "Surpoids", color: "lightcoral", range: [25, 30] },
   { name: "Obésité modérée", color: "orange", range: [30, 35] },
   { name: "Obésité sévère", color: "crimson", range: [35, 40] },
-  { name: "Obésité morbide", color: "purple", range: 40 },
+  { name: "Obésité morbide", color: "purple", range: [40, Infinity] },
 ];
 
 const globalForm = document.querySelector('form')

@@ -27,14 +27,20 @@ h2 {
   border: solid 3px black;
   background: white;
   border-radius: 10px;
-  width: 45%;
+  width: 55%;
   margin: auto;
   text-align: center;
 }
 
-.cm-container input,
-.kg-container input {
-  font-size: 1.3rem;
+.inputs-container {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.inputs-container input {
+  font-size: 1rem;
   margin-top: 10px;
   width: 65%;
   height: 50px;
@@ -44,9 +50,8 @@ h2 {
   padding-left: 10px;
 }
 
-.kg-container label,
-.cm-container label {
-  font-size: 1.2rem;
+.inputs-container label {
+  font-size: 1rem;
 }
 
 .value-container {
@@ -56,9 +61,10 @@ h2 {
 
 #calcul {
   width: 30%;
-  height: 50px;
+  height: 70px;
   font-size: 1.3rem;
   border-radius: 10px;
+  padding: 10px;
   background: #fabe33;
 }
 
@@ -95,4 +101,74 @@ h2 {
 
 .purple {
   color: purple;
+}
+
+/* Mise en place du responsive */
+
+@media (max-width: 920px) {
+  .app-container {
+    width: 60%;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  .inputs-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .value-container {
+    display: block;
+  }
+
+  .inputs-container:nth-of-type(2) {
+    margin-top: 20px;
+  }
+
+  #calcul {
+    font-size: 1.1rem;
+  }
+
+  #result {
+    font-size: 1rem;
+    height: 50px;
+  }
+
+  .IMC p {
+    font-size: 1.5rem;
+  }
+}
+
+/* Responsive Téléphone */
+
+@media (max-width: 600px) {
+  h2 {
+    font-size: 1rem;
+  }
+
+  .inputs-container label {
+    font-size: 0.8rem;
+  }
+
+  .inputs-container input {
+    font-size: 0.8rem;
+  }
+
+  #calcul {
+    font-size: 0.8rem;
+    width: 45%;
+    height: 50px;
+  }
+
+  #result {
+    font-size: 0.8rem;
+  }
+
+  .IMC p {
+    font-size: 1.1rem;
+  }
 }
