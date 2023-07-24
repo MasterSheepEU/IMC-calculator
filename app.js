@@ -11,11 +11,16 @@ const globalForm = document.querySelector('form')
 const calculButton = document.getElementById('calcul')
 const result = document.getElementById('result')
 
-globalForm.addEventListener('submit', (e) => {
-  e.preventDefault()
+// Focntion Calcul de l'IMC
+
+const calculIMC = () => {
+
+  //Variable de taille et de poids
 
   let cmValue = document.getElementById('cm-number').value
   let kgValue = document.getElementById('kg-number').value
+
+  // Message d'erreur si les chiffres rentré dans l'input ne sont pas correct
 
   if (cmValue < 0 || kgValue < 0 || cmValue === "" || kgValue === "") {
 
@@ -27,7 +32,7 @@ globalForm.addEventListener('submit', (e) => {
     `
   } else {
 
-    //Calcul de l'IMC
+    // Calcul de l'IMC
 
     cmValue = cmValue / 100
     cmValue = Math.pow(cmValue, 2)
@@ -35,100 +40,55 @@ globalForm.addEventListener('submit', (e) => {
     let IMC = kgValue / cmValue
     IMC = Math.ceil(IMC)
 
-    // Vérification et exposition du résultat dans le DOM 
+    // Return du resultat à la fonction 
 
-    let resultText = "";
-    for (let i = 0; i < BMIData.length; i++) {
+    return IMC;
+  }
+}
 
-      const category = BMIData[i];
+// Fonction d'affichage de L'IMC
 
-      if (IMC < category.range[1]) {
-        resultText = `
-          <div class="IMC">
-            <p class=${category.color}>${IMC}</p>
-            <p>Résultat : ${category.name}</p>
-          </div>
-        `;
-        break; // Sortir de la boucle dès que la catégorie appropriée est trouvée
-      }
-    }
+const displayResult = (IMC) => {
 
-    // Si l'IMC est supérieur à la dernière plage, la dernière catégorie s'applique
-    if (IMC >= BMIData[BMIData.length - 1].range[1]) {
+  let resultText = "";
+  for (let i = 0; i < BMIData.length; i++) {
+
+    const category = BMIData[i];
+
+    if (IMC < category.range[1]) {
       resultText = `
         <div class="IMC">
-          <p>${IMC}</p>
-          <p>Résultat : ${BMIData[BMIData.length - 1].name}</p>
+          <p class=${category.color}>${IMC}</p>
+          <p>Résultat : ${category.name}</p>
         </div>
       `;
+      break; // Sortir de la boucle dès que la catégorie appropriée est trouvée
     }
-
-    // Mettre à jour le contenu de l'élément résultat
-    result.innerHTML = resultText;
-
-
-
-
-
-
-
-
-
-
-    /* 1ére essai */
-
-    // if (IMC < 18.5) {
-
-    //   result.innerHTML = `
-    //   <div class="IMC">
-    //     <p>${IMC}</p>
-    //     <p>Resultat : ${BMIData[0].name}</p>
-    //   </div>
-    //   `
-    // } else if (IMC < 25) {
-
-    //   result.innerHTML = `
-    //   <div class="IMC">
-    //     <p>${IMC}</p>
-    //     <p>Resultat : ${BMIData[1].name}</p>
-    //   </div>
-    //   `
-    // } else if (IMC < 30) {
-
-    //   result.innerHTML = `
-    //   <div class="IMC">
-    //     <p>${IMC}</p>
-    //     <p>Resultat : ${BMIData[2].name}</p>
-    //   </div>
-    //   `
-    // } else if (IMC < 35) {
-
-    //   result.innerHTML = `
-    //   <div class="IMC">
-    //     <p>${IMC}</p>
-    //     <p>Resultat : ${BMIData[3].name}</p>
-    //   </div>
-    //   `
-    // } else if (IMC < 40) {
-
-    //   result.innerHTML = `
-    //   <div class="IMC">
-    //     <p>${IMC}</p>
-    //     <p>Resultat : ${BMIData[4].name}</p>
-    //   </div>
-    //   `
-    // } else {
-
-    //   result.innerHTML = `
-    //   <div class="IMC">
-    //     <p>${IMC}</p>
-    //     <p>Resultat : ${BMIData[5].name}</p>
-    //   </div>
-    //   `
-    // }
-
-
   }
+
+  // Si l'IMC est supérieur à la dernière plage, la dernière catégorie s'applique
+
+  if (IMC >= BMIData[BMIData.length - 1].range[1]) {
+    resultText = `
+      <div class="IMC">
+        <p>${IMC}</p>
+        <p>Résultat : ${BMIData[BMIData.length - 1].name}</p>
+      </div>
+    `;
+  }
+
+  result.innerHTML = resultText;
+
+}
+
+//Appel des fonctions lors de l'envoi du form
+
+globalForm.addEventListener('submit', (e) => {
+  e.preventDefault()
+
+  calculIMC()
+
+  displayResult(calculIMC())
 
 })
 
